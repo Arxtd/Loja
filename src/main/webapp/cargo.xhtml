@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Cargos</title>
+    </h:head>
+    <h:body>
+
+
+
+        <h:form>
+            <p:growl/>
+            <p:panel header="Cargo" widgetVar="panel">
+                <center>
+                    <h:panelGrid columns="3">
+                        <p:button value="Adicionar" href="adicionareditarcargo.xhtml" icon="pi pi-plus" styleClass="rounded-button ui-button-secondary"/>
+                        <p:button style="float: right" value="voltar" icon="pi pi-home" href="home.xhtml" styleClass="rounded-button ui-button-warning"/>
+                        <p:button icon="pi pi-search" value="Pesquisar" href="pesquisarcargo.xhtml" styleClass="rounded-button ui-button-info"/>
+                    </h:panelGrid>
+                </center>
+
+                <h5>Cargos</h5>
+                <hr/>
+
+                <p:dataTable id="dataTable" var="cargo" value="#{managerCargo.cargos}" rows="10" paginator="true">
+
+                    <p:column headerText="Ações" width="100">
+                        <p:commandButton  actionListener="#{managerCargo.remover(cargo)}" update="dataTable" process="@this" styleClass="ui-button-danger ui-button-flat" icon="pi pi-trash" />
+                        <p:button icon="pi pi-pencil" href="adicionareditarcargo.xhtml?editar=#{cargo.id}" styleClass="ui-button-info ui-button-flat" />
+                    </p:column>
+
+
+                    <p:column headerText="Cargo">
+                        <p:outputLabel value="#{cargo.nome}"/>
+                    </p:column>
+
+                </p:dataTable>
+
+            </p:panel>
+
+        </h:form>
+
+    </h:body>
+</html>

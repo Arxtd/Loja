@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Produtos</title>
+    </h:head>
+    <h:body>
+
+
+
+        <h:form>
+            <p:growl/>
+            <p:panel header="Pesquisar" widgetVar="panel">
+                <h5>Pesquisar Produto</h5>
+                <p:button style="float: right" value="voltar" icon="pi pi-home" href="produtos.xhtml" styleClass="rounded-button ui-button-warning"/>
+
+                <hr/>
+
+                <center>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Nome:"/>
+                        <p:inputText value="#{managerProduto.produto.nome}"/>
+                    </h:panelGrid>
+
+                    <p:commandButton value="Pesquisar" actionListener="#{managerProduto.pesquisar()}" 
+                                     update="@form" icon="pi pi-search" styleClass="rounded-button ui-button-secondary"/>
+
+                </center>
+
+
+                <h5>Produtos encontrados</h5>
+                <hr/>
+
+                <p:dataTable id="dataTable" var="produto" value="#{managerProduto.produtos}" rows="10" paginator="true">
+
+                    <p:column headerText="Ações">
+                        <p:commandButton  actionListener="#{managerProduto.remover(produto)}" update="dataTable" process="@this" styleClass="ui-button-danger ui-button-flat" icon="pi pi-trash" />
+                        <p:button icon="pi pi-pencil" href="adicionareditarproduto.xhtml?editar=#{produto.id}" styleClass="ui-button-info ui-button-flat" />
+                    </p:column>
+                    <p:column headerText="Nome">
+                        <p:outputLabel value="#{produto.nome}"/>
+                    </p:column>
+                    <p:column headerText="Marca">
+                        <p:outputLabel value="#{produto.marca.nome}"/>
+                    </p:column>
+                    <p:column headerText="Preço de compra">
+                        <p:outputLabel value="R$#{produto.precodecompra}"/>
+                    </p:column>
+                    <p:column headerText="Preço de venda">
+                        <p:outputLabel  value="R$#{produto.precodevenda}"/>
+                    </p:column>
+                    <p:column headerText="Tipo">
+                        <p:outputLabel value="#{produto.tipo}"/>
+                    </p:column>
+                    <p:column headerText="Quantidade" width="100">
+                        <p:outputLabel value="#{produto.quantidade}"/>
+                    </p:column>
+                    <p:column headerText="Litro">
+                        <p:outputLabel value="#{produto.litro}"/>
+                    </p:column>
+                    <p:column headerText="ML">
+                        <p:outputLabel value="#{produto.ml}"/>
+                    </p:column>
+                    <p:column headerText="Kilo">
+                        <p:outputLabel value="#{produto.kilo}"/>
+                    </p:column>
+                    <p:column headerText="Grama">
+                        <p:outputLabel value="#{produto.grama}"/>
+                    </p:column>
+                    <p:column headerText="Observação">
+                        <p:outputLabel value="#{produto.observacao}"/>
+                    </p:column>
+
+
+                </p:dataTable>
+
+            </p:panel>
+
+        </h:form>
+
+    </h:body>
+</html>

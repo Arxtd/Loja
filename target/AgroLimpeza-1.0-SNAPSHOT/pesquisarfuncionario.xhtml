@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Pesquisar Funcionários</title>
+    </h:head>
+    <h:body>
+
+
+
+        <h:form>
+            <p:growl/>
+            <p:panel header="Funcionario" widgetVar="panel">
+                <h5>Pesquisar</h5>
+                <p:button style="float: right" value="voltar" icon="pi pi-home" href="funcionarios.xhtml" styleClass="rounded-button ui-button-warning"/>
+
+                <hr/>
+
+                <br/>
+
+                <h:panelGrid columns="2">
+                    <p:outputLabel value="Nome:"/>
+                    <p:inputText value="#{managerFuncionario.funcionario.nome}"/>
+                </h:panelGrid>
+                
+                <center>
+                    <h:panelGrid columns="1">
+                        <p:commandButton value="Pesquisar" actionListener="#{managerFuncionario.pesquisar()}" 
+                                         update="@form" icon="pi pi-search" styleClass="rounded-button ui-button-warning"/>
+                    </h:panelGrid>
+                </center>
+
+                <h5>Funcionarios</h5>
+                <hr/>
+
+                <p:dataTable id="dataTable" var="funcionario" value="#{managerFuncionario.funcionarios}" rows="10" paginator="true">
+                    <p:column headerText="Ações" width="100">
+                        <p:commandButton  actionListener="#{managerFuncionario.remover(funcionario)}" update="dataTable" process="@this" styleClass="ui-button-danger ui-button-flat" icon="pi pi-trash" />
+                        <p:button icon="pi pi-pencil" href="adicionareditarfuncionario.xhtml?editar=#{funcionario.id}" styleClass="ui-button-info ui-button-flat" />
+                    </p:column>
+                    <p:column headerText="Nome" width="70">
+                        <p:outputLabel value="#{funcionario.nome}"/>
+                    </p:column>
+                    <p:column headerText="Sobrenome">
+                        <p:outputLabel value="#{funcionario.sobrenome}"/>
+                    </p:column>
+                    <p:column headerText="Telefone">
+                        <p:outputLabel value="#{funcionario.telefone}"/>
+                    </p:column>
+                    <p:column headerText="CPF">
+                        <p:outputLabel value="#{funcionario.cpf}"/>
+                    </p:column>
+                    <p:column headerText="Email">
+                        <p:outputLabel value="#{funcionario.email}"/>
+                    </p:column>
+                    <p:column headerText="Sexo" width="50">
+                        <p:outputLabel value="#{funcionario.sexo.sigla}"/>
+                    </p:column>
+                    <p:column headerText="Cargo">
+                        <p:outputLabel value="#{funcionario.cargo}"/>
+                    </p:column>
+                    <p:column headerText="Idade" width="50">
+                        <p:outputLabel value="#{funcionario.idade}"/>
+                    </p:column>
+                    <p:column headerText="Salário">
+                        <p:outputLabel value="R$#{funcionario.salario}"/>
+                    </p:column>
+                </p:dataTable>
+
+            </p:panel>
+
+        </h:form>
+
+    </h:body>
+</html>

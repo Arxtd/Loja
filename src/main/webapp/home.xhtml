@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Home</title>
+    </h:head>
+    <h:body style="background-image: url(source/agroLimpeza.png); background-repeat: no-repeat">
+
+        <font face="Arial"><h1 align="center">Menu</h1></font>
+        <font face="Arial"><h5 align="center"> #{managerMenu.mensagem} </h5></font>
+        
+        <br/>
+        <br/>
+        <br/>
+
+        <h:form>
+            <center>
+                <h:panelGrid columns="6">                    
+                    <p:button value="Produtos" icon="pi pi-cart-plus" href="produtos.xhtml" styleClass="rounded-button ui-button-success"/>
+                    <p:button value="Fornecedores" icon="pi pi-briefcase" href="fornecedor.xhtml" styleClass="rounded-button ui-button-secondary" />
+                    <p:button value="Marcas" icon="pi pi-box" href="marca.xhtml" styleClass="rounded-button ui-button-info"/>
+                    <p:button value="Tipos" icon="pi pi-tag" href="tipo.xhtml" styleClass="rounded-button ui-button-help" />
+                    <p:button value="Funcionários" icon="pi pi-users" href="funcionarios.xhtml" styleClass="rounded-button ui-button-warning" />
+                    <p:button value="Cargos" icon="pi pi-cog" href="cargo.xhtml" styleClass="rounded-button ui-button-danger" />
+                </h:panelGrid>
+            </center>
+
+        </h:form>
+
+
+    </h:body>
+</html>
+
+

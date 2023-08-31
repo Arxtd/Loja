@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Pesquisar Tipos</title>
+    </h:head>
+    <h:body>
+
+
+
+        <h:form>
+            <p:growl/>
+            <p:panel header="Tipo" widgetVar="panel">
+                <h5>Pesquisar</h5>
+                <p:button style="float: right" value="voltar" icon="pi pi-home" href="tipo.xhtml" styleClass="rounded-button ui-button-warning"/>
+
+                <hr/>
+
+                <div class="col-12 md:col-4">
+                    <div class="ui-inputgroup">
+                        <p:inputText placeholder="Nome do Tipo" value="#{managerTipo.tipo.nome}"/>
+                        <p:commandButton icon="pi pi-search" actionListener="#{managerTipo.pesquisar()}" update="@form" styleClass="ui-button-warning"/>
+                    </div>
+                </div>
+
+
+
+                <h5>Tipos</h5>
+                <hr/>
+
+                <p:dataTable id="dataTable" var="tipo" value="#{managerTipo.tipos}" rows="10" paginator="true">
+                    <p:column headerText="Ações" width="100">
+                        <p:commandButton  actionListener="#{managerTipo.remover(tipo)}" update="dataTable" process="@this" styleClass="ui-button-danger ui-button-flat" icon="pi pi-trash" />
+                        <p:button icon="pi pi-pencil" href="adicionareditartipo.xhtml?editar=#{tipo.id}" styleClass="ui-button-info ui-button-flat" />
+                    </p:column>
+
+                    <p:column headerText="Tipos">
+                        <p:outputLabel value="#{tipo.nome}"/>
+                    </p:column>
+                </p:dataTable>
+
+            </p:panel>
+
+        </h:form>
+
+    </h:body>
+</html>

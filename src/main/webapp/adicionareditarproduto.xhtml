@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Adicionar e Editar Produtos</title>
+    </h:head>
+    <h:body>
+
+
+
+        <h:form>
+            <p:growl/>
+            <p:panel header="Adicionar Produto" widgetVar="panel">
+                <h5>Adicionar e Editar Produto</h5>
+                <p:button style="float: right" value="voltar" icon="pi pi-home" href="produtos.xhtml" styleClass="rounded-button ui-button-warning"/>
+
+                <hr/>
+
+                <center>
+                    <h:panelGrid id="panel" columns="4">
+                        <p:outputLabel for="nome" value="Nome:"/>
+                        <p:inputText id="nome" value="#{managerProduto.produto.nome}" required="true" requiredMessage="Identifique o nome do produto."/>
+
+                        <p:outputLabel for="marca" value="Marca:"/>
+                        <p:autoComplete id="marca" value="#{managerProduto.produto.marca}" converter="marcaconverter"  var="marca" itemValue="#{marca}" itemLabel="#{marca.nome}"
+                                        completeMethod="#{managerProduto.autocompleteMarca}" dropdown="true" scrollHeight="250"/>
+
+                        <p:outputLabel for="precocompra" value="Preço de compra:"/>
+                        <p:inputText id="precocompra" value="#{managerProduto.produto.precodecompra}"/>
+
+                        <p:outputLabel for="precovenda" value="Preço de venda:"/>
+                        <p:inputText id="precovenda" value="#{managerProduto.produto.precodevenda}"/>
+
+                        <p:outputLabel for="tipo" value="Tipo de produto:"/>
+                        <p:autoComplete id="tipo" value="#{managerProduto.produto.tipo}" converter="tipoconverter"  var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}"
+                                        completeMethod="#{managerProduto.autocompleteTipo}" dropdown="true" scrollHeight="250"/>
+
+                        <p:outputLabel for="fornecedor" value="Fornecedor:"/>
+                        <p:autoComplete id="fornecedor" value="#{managerProduto.produto.fornecedor}" converter="fornecedorconverter"  var="fornecedor" itemValue="#{fornecedor}" itemLabel="#{fornecedor.nome}"
+                                        completeMethod="#{managerProduto.autocompleteFornecedor}" dropdown="true" scrollHeight="250"/>
+
+                        <p:outputLabel for="quantidade" value="Quantidade:"/>
+                        <p:inputText id="quantidade" value="#{managerProduto.produto.quantidade}" required="true" requiredMessage="Identifique a quantidade deste produto."/>
+
+                        <p:outputLabel for="litro" value="Litro:"/>
+                        <p:inputText id="litro" value="#{managerProduto.produto.litro}"/>
+
+                        <p:outputLabel for="ml" value="Ml:"/>
+                        <p:inputText id="ml" value="#{managerProduto.produto.ml}"/>
+
+                        <p:outputLabel for="kilo" value="Kilo:"/>
+                        <p:inputText id="kilo" value="#{managerProduto.produto.kilo}"/>
+
+                        <p:outputLabel for="grama" value="Grama:"/>
+                        <p:inputText id="grama" value="#{managerProduto.produto.grama}"/>
+
+                        <p:outputLabel for="obs" value="Observação:"/>
+                        <p:inputTextarea id="obs" value="#{managerProduto.produto.observacao}"/>
+
+                    </h:panelGrid>
+
+
+                    <h:panelGrid columns="2">
+                        <p:commandButton value="Salvar" actionListener="#{managerProduto.adicionar()}" 
+                                         update="@form" icon="pi pi-plus" styleClass="rounded-button ui-button-secondary"/>
+                        <p:button value="Pesquisar" icon="pi pi-search" href="pesquisarprodutos.xhtml" styleClass="rounded-button ui-button-info"/>
+                    </h:panelGrid>
+                </center>
+
+                <hr/>
+
+            </p:panel>
+
+        </h:form>
+
+    </h:body>
+</html>
+

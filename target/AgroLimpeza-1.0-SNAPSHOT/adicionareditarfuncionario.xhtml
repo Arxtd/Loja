@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Adicionar e Editar Funcionários</title>
+    </h:head>
+    <h:body>
+
+
+
+        <h:form>
+
+            <p:growl/>
+            <p:panel header="Funcionários" widgetVar="panel">
+                <h5>Contratar ou Editar</h5>
+                <p:button style="float: right" value="voltar" icon="pi pi-home" href="funcionarios.xhtml"  styleClass="rounded-button ui-button-warning"/>
+
+                <hr/>
+
+                <center>
+                    <h:panelGrid columns="4">
+                        <p:outputLabel value="Nome:"/>
+                        <p:inputText value="#{managerFuncionario.funcionario.nome}" required="true" requiredMessage="Identifique o nome do funcionário."/>
+
+                        <p:outputLabel value="Sobrenome:"/>
+                        <p:inputText value="#{managerFuncionario.funcionario.sobrenome}"/>
+
+                        <p:outputLabel value="Telefone:"/>
+                        <p:inputMask mask="(99) 99999-9999" value="#{managerFuncionario.funcionario.telefone}"/>
+
+                        <p:outputLabel value="CPF:"/>
+                        <p:inputMask mask="999.999.999-99" value="#{managerFuncionario.funcionario.cpf}"/>
+
+                        <p:outputLabel value="Email:"/>
+                        <p:inputText value="#{managerFuncionario.funcionario.email}"/>
+
+                        <p:outputLabel value="Sexo:"/>
+                        <p:selectOneMenu id="sexofuncionario" value="#{managerFuncionario.funcionario.sexo}">
+                            <f:selectItem itemLabel="Selecione" noSelectionOption="true"/>
+                            <f:selectItems value="#{managerFuncionario.sexo}" var="item" itemLabel="#{item.label}" itemValue="#{item}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="cargo" value="Cargo:"/>
+                        <p:autoComplete id="cargo" value="#{managerFuncionario.funcionario.cargo}" converter="cargoconverter"  var="cargo" itemValue="#{cargo}" itemLabel="#{cargo.nome}"
+                                        completeMethod="#{managerFuncionario.autocompleteCargo}" dropdown="true" scrollHeight="250"/>
+
+                        <p:outputLabel value="Idade:"/>
+                        <p:inputText value="#{managerFuncionario.funcionario.idade}"/>
+
+                        <p:outputLabel value="Salário:"/>
+                        <p:inputText value="#{managerFuncionario.funcionario.salario}"/>
+
+
+                    </h:panelGrid>
+
+
+                    <h:panelGrid columns="2">
+                        <p:commandButton value="Salvar" actionListener="#{managerFuncionario.adicionar()}" update="@form" icon="pi pi-plus" styleClass="rounded-button ui-button-secondary"/>
+                        <p:button icon="pi pi-search" value="Pesquisar" href="pesquisarfuncionario.xhtml" styleClass="rounded-button ui-button-info"/>
+                    </h:panelGrid>
+                </center>
+
+            </p:panel>
+
+        </h:form>
+
+    </h:body>
+</html>
